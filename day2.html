@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>삼각형 판별하기 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b, c) {
+        let answer = 'YES',
+          max = 0,
+          target = 0,
+          data = [a, b, c];
+        // 삼각형은 가장 길이가 긴 막대가 나머지 두 막대 길이의 합보다 작아야지 만들어질 수 있다
+        // 1. 먼저 a, b, c 중에 길이가 가장 긴 값을 찾는다. = max
+        // 2. 나머지 두 길이의 합이 1번의 값보다 큰 지 여부를 확인한다. = target
+        for (let n = 0; n < data.length; n++) {
+          if (data[n] > max) {
+            target += max;
+            max = data[n];
+          } else {
+            target += data[n];
+          }
+        }
+        if (max > target) answer = 'NO';
+        return answer;
+        // 다른 방법
+        // 1. 먼저, a+b+c의 합을 구한다.
+        // 2. 최댓값을 찾는다.
+        // 3. 1번에서 최댓값을 뺐을 때, 최댓값이 더 크다면 NO를 리턴한다.
+        // let answer = 'YES';
+        // let max = 0;
+        // let sum = a + b + c;
+        // if (a > b) max = a;
+        // else max = b;
+        // if (c > max) max = c;
+        // if (sum - max <= max) answer = 'NO';
+        // return answer;
+      }
+
+      console.log(solution(6, 7, 11));
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>
