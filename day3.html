@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>연필 개수 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        // n의 학생들에게 연필 한 자루씩 나눠줬을 때 필요한 연필 다스의 수
+        // 1. n을 12로 나눈다
+        // 2. 1의 정수 값보다 count가 클 경우 즉, 소수점이 존재할 경우 count에 1을 더해준다
+        // 3. 2의 경우가 아닐 경우 정수를 리턴한다.
+        let count = n / 12;
+
+        if (count > parseInt(count)) {
+          count = parseInt(count) + 1;
+        }
+
+        return count;
+        // Math.ceil => 주어진 숫자보다 크거나 같은 숫자 중 가장 작은 숫자를 integer로 반환합니다. 인자값을 올림해준다
+        // Math.floor => 주어진 숫자와 같거나 작은 정수 중에서 가장 큰 수를 반환합니다.
+        // Math.round => 입력값을 반올림한 수와 가장 가까운 정수 값을 반환합니다.
+
+        // let count = Math.ceil(n/12);
+        // return count; 이렇게 간단하게 진행할 수 있음
+      }
+      console.log(solution(13));
+    </script>
+  </body>
+</html>
