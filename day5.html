@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>최솟값 구하기 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        // 1. answer을 arr의 0번 인덱스 값으로 한다
+        // 2. arr의 1번 인덱스부터 for문을 돌면서 answer 보다 작으면 answer을 변경한다
+        let answer = arr[0];
+        for (let n = 1; n < arr.length; n++) {
+          if (answer > arr[n]) answer = arr[n];
+        }
+        return answer;
+        // 최솟값을 구할 때는 answer = Number.MAX_SAFE_INTEGER;로 해서 자바스크립트에서 가장 큰 정수로 지정하고, arr의 0번째 인덱스부터 for문을 돌려도 된다.
+        // 내장 함수로 최솟값 구하기 return Math.min(...arr);
+
+        // Math.min.apply(null, arr) 이렇게하면 ...arr가 아닌 arr로 바로 최솟값을 찾을 수 있음
+        // apply는 주어진 this 값과 배열 (또는 유사 배열 객체)로 제공되는 arguments로 함수를 호출
+        // func.apply(thisArg, [argsArray])
+        // thisArg
+        // func를 호출하는데 제공될 this의 값.
+        // this는 메소드에 의해 실제로 보여지는 값이 아닐 수 있음을 유의. 메소드가 non-strict mode 코드의 함수일 경우, null과 undefined가 전역 객체로 대체되며, 기본 값은 제한됨.
+
+        // argsArray
+        // func이 호출되어야 하는 인수를 지정하는 유사 배열 객체,
+        // 함수에 제공된 인수가 없을 경우 null 또는 undefined. ECMAScript 5의 시작으로 이러한 인수들은 배열 대신 제네릭 유사 배열 객체로 사용될 수 있음.
+      }
+
+      let arr = [5, 7, 3, 2, 9, 11, 1];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

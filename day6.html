@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>홀수의 합과 홀수 중 최솟값 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let sum = 0;
+        let min = Number.MAX_SAFE_INTEGER;
+
+        // 1. for문으로 arr를 돌면서 홀수인지 여부를 확인한다.
+        for (let n = 0; n < arr.length; n++) {
+          if (arr[n] % 2 === 1) {
+            // 2. 홀수가 맞다면 sum에 더한다.
+            sum += arr[n];
+            // 3. min보다 작다면 arr[n]으로 min을 변경한다.
+            if (min > arr[n]) min = arr[n];
+          }
+        }
+        return [sum, min];
+      }
+
+      arr = [12, 77, 38, 41, 53, 92, 85];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
