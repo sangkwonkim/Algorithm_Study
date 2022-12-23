@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>일곱 난쟁이 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        // 일곱 난쟁이 키의 합이 100임. 아홉명의 난쟁이 중 일곱 난쟁이를 찾아라
+        // 1. arr 모든 요소의 값의 합을 구한 다음
+        // 2. 2중 반복문을 돌면서 얻는 2개의 요소를 1의 합에서 뺀 후 100이 되는 지 확인
+        // 3. 100이 된다면 두 요소를 배열에서 삭제 후 리턴
+        // 4. 안된다면 계속 돈다.
+
+        let answer = arr;
+        let sum = 0;
+        for (let n of arr) sum += n;
+        // case2. reduce로 합을 구한다
+        // sum = answer.reduce((a, b)=> a + b, 0);
+
+        for (let i = 0; i < answer.length - 1; i++) {
+          for (let j = 1; j < answer.length; j++) {
+            if (sum - (answer[i] + answer[j]) === 100) {
+              answer.splice(j, 1);
+              answer.splice(i, 1);
+              // i를 answer에서 먼저 splice할 경우,
+              // j가 i보다 더 큰 숫자인데 배열에서 원하던 위치의 요소를 삭제시킬 수 없음
+              // 그래서 j를 먼저 삭제해야 함.
+              break;
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

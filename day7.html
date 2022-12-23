@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>10부제 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(day, arr) {
+        let answer = 0;
+        // 자동차 번호의 일의 자리 숫자와 날짜의 일의 자리 숫자가 동일하면 운행을 금지함
+        // 위반 차량 대수 반환하기
+
+        // 1. for 문을 돌면서 arr 요소의 1의 자릿수를 찾는다 => 요소 % 10해서 나머지를 찾는다
+        // 2. day와 그 수가 동일하다면 answer += 1을 한다
+
+        for (let n = 0; n < arr.length; n++) {
+          let num = arr[n] % 10;
+          if (num === day) answer += 1;
+        }
+        return answer;
+
+        // for of 사용해보기
+        // for (let n of arr) {
+        //   if (n % 10 === day) answer++;
+        // }
+      }
+
+      arr = [12, 20, 54, 30, 87, 91, 31];
+      console.log(solution(0, arr));
+    </script>
+  </body>
+</html>
