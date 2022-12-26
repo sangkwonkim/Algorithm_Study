@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>문자 찾기 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let answer = 0;
+        // s라는 문자열에 t 문자가 몇 개인지 찾아라
+        // 1.s를 순회하면서 t와 동일할 경우에 answer에 1을 더한다.
+        for (let n of s) {
+          if (n === t) answer++;
+        }
+        return answer;
+
+        // case2 split 사용하기
+        // s 문자열을 t로 나누고 1을 빼면 t을 갯수를 알 수 있음
+        // 맨 뒤에 찾는 t가 들어와도 '' 요소가 더 추가되기 때문에 갯수 파악에 오류가 발생하지 않음
+        return s.split(t).length - 1;
+      }
+
+      let str = 'COMPUTERPROGRAMMING';
+      console.log(solution(str, 'R'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>A를 #으로 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 입력된 영단어에서 A를 #으로 바꿔서 출력
+        // s를 for문을 돌면서 'A'와 같을 경우 #으로 변경한다
+        let answer = '';
+        for (let n = 0; n < s.length; n++) {
+          if (s[n] !== 'A') answer += s[n];
+          else answer += '#';
+        }
+
+        //case2 정규표현식
+        // let answer = s;
+        // answer = answer.replace(/A/g, '#'); 첫번째 인자에 g가 없으면 최초로 찾는 A만 값을 바꾼다.
+        return answer;
+      }
+
+      let str = 'BANANA';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
