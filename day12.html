@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>대문자로 통일 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 입력받은 문자열을 대문자로 반환하기
+        // 내장 함수 이용하기
+        // return s.toUpperCase();
+        let answer = '';
+
+        for (let x of s) {
+          if (x === x.toUpperCase()) {
+            answer += x;
+          } else {
+            answer += x.toUpperCase();
+          }
+          // 아스키 코드로 변환시켜보기
+          // 1. 아스키 코드로 변환한 숫자가 소문자 범위에 있는 지 여부를 확인하기
+          // 2. 해당 문자의 아스키 코드가 97 ~ 122 사이면
+          // 3. num에서 32를 빼면 대문자 아스키코드가 된다(대문자는 65 ~ 90)
+          // 4. String.fromCharCode(num-32)로 아스키코드를 대문자로 변환해서 추가해준다
+          // let num = x.charCodeAt();
+          // if (num >= 97 && num <= 122) answer += String.fromCharCode(num - 32);
+          //   else answer += x;
+        }
+        return answer;
+      }
+
+      let str = 'ItisTimeToStudy';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

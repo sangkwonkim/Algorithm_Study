@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>가장 긴 문자열 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = '';
+        let maxLength = 0;
+        // = Number.MIN_SAFE_INTEGER
+
+        // 주어진 배열에서 가장 긴 단어를 반환한다
+        // 1. 입력받은 배열을 순회한다
+        // 2. maxLength보다 단어가 길면 answer와 maxLength를 바꿔준다
+        // 3. 순회가 끝나면 해당 단어를 반환한다.
+
+        for (let x of s) {
+          if (x.length > maxLength) (answer = x), (maxLength = x.length);
+        }
+
+        return answer;
+      }
+      let str = ['teacher', 'time', 'student', 'beautiful', 'good'];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

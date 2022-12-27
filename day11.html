@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>대문자 찾기 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+
+        // 입력받은 문자열에 대문자가 몇  개인지 찾기
+        // 입력 받은 문자열을 순회하면서 upperCase했을 때 같은 지 여부를 확인하고 count를 올린다
+
+        for (let x of s) {
+          if (x === x.toUpperCase()) {
+            answer++;
+          }
+        }
+        // 아스키코드 번호로 푸는 방법
+        // 아스키코드 영 대문자는 65 ~ 90까지
+        // 소문자는 97 ~ 122까지
+
+        // 해당 문자를 아스키코드로 변환하는 방법
+        // for (let x of s) {
+        //   let num = x.charCodeAt();
+        //   console.log(num);
+        //   if (num >= 65 && num <= 90) answer++;
+        // }
+        return answer;
+      }
+
+      let str = 'KoreaTimeGood';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
