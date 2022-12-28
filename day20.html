@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>가위바위보 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(a, b) {
+        // a, b는 두 사람 내는 가위바위보를 숫자로 바꾼 배열로 이뤄짐
+        // N번의 게임을 해서 A가 이기면 A를, B가 이기면 B를, 비기면 D를 리턴한다.
+        // 1: 가위, 2: 바위, 3: 보
+
+        // 1. 동일한 숫자이기 때문에 한 번의 for 문으로 두 배열을 순회한다.
+        // 2. 3개의 if문으로 승자를 판가름한다.
+        // A가 이길 수 있는 조건 a[n] - b[n]이 음수가 아니다, 2가 아니다, -2일 경우
+        // 0이면 비긴다
+        // 음수면 B가 이긴다
+
+        let answer = '';
+        for (let n = 0; n < a.length; n++) {
+          let result = a[n] - b[n];
+          console.log(result);
+          if (result === 0) answer += 'D';
+          else if ((result > 0 && result !== 2) || result === -2) {
+            answer += 'A';
+          } else {
+            answer += 'B';
+          }
+
+          // if(a[i]===b[i]) answer+="D ";
+          // else if(a[i]===1 && b[i]===3) answer+="A ";
+          // else if(a[i]===2 && b[i]===1) answer+="A ";
+          // else if(a[i]===3 && b[i]===2) answer+="A ";
+          // else answer+="B ";
+        }
+        return answer;
+      }
+
+      let a = [2, 3, 3, 1, 3, 1];
+      let b = [1, 1, 2, 2, 3, 3];
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
