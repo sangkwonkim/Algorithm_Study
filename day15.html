@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>가운데 문자 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+
+        // 소문자로 입력된 단어의 가운데 문자를 반환한다.
+        // 단어의 길이가 짝수일 경우에는 2개의 문자를 출력한다.
+
+        // 1. 문자의 길이를 확인한다
+        // 2. 홀수일 경우 나누기 2를 하고 Math.floor한 인덱스의 문자열을 리턴한다
+        // 3. 짝수일 경우 나누기 2를 하고 -1한 인덱스의 문자열에서 1을 더한 인덱스까지 리턴한다.
+
+        let num = Math.floor(s.length / 2);
+        if (s.length % 2 === 1) {
+          answer = s.slice(num, num + 1);
+        } else {
+          answer = s.slice(num - 1, num + 1);
+        }
+
+        return answer;
+
+        // substring => string 객체의 시작 인덱스로 부터 종료 인덱스 전 까지 문자열의 부분 문자열을 반환
+        // slice를 substring으로 바꿔도 동일하게 동작함
+        // let num = Math.floor(s.length / 2);
+        // if (s.length % 2 === 1) {
+        //   answer = s.substring(num, num + 1);
+        // } else {
+        //   answer = s.substring(num - 1, num + 1);
+        // }
+
+        // substring과 slice 차이
+        // 1. start > end 일 때
+        // substring은 start > end일 때, start와 end의 위치를 바꿔서 결과를 계산합니다. 즉, substring(5, 0)은 substring(0, 5)으로 계산됩니다.
+        // 반면에 slice는 start > end일 때 빈 문자열('')을 리턴합니다.
+
+        // 2. start가 음수일 때
+        // substring은 start가 음수일 때 0으로 변경되고, slice는 음수일 때 문자열 끝에서 앞쪽으로 음수만큼 이동된 Index로 계산됩니다.
+
+        // 3. end가 음수일 때
+        // substring은 end가 음수일 때 0으로 계산되며, slice는 문자열 끝에서 앞쪽으로 이동하여 위치를 찾습니다.
+
+        // return answer;
+        // substr => 문자열에서 특정 위치에서 시작하여 특정 문자 수 만큼의 문자들을 반환 단, 현재는 하나 이상의 바람직하지 않은 특징을 갖고 있어 사용처가 없을 경우 명세에서 제거될 수 있음
+      }
+      console.log(solution('like'));
+    </script>
+  </body>
+</html>
