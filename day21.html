@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>점수 계산 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        // OX의 총 점수를 계산하라
+        // 연속적으로 답을 맞히는 경우에는 가산점을 준다.
+        // 1번 문제가 맞으면 1점, 앞의 문제가 틀리고 다음 문제를 맞췄을 경우 1점으로 계산
+        // 연속적으로 답이 맞는 경우 두 번째 문제는 2점, 세 번째 문제는 3점을 준다.
+        // 틀린 문제는 0점으로 계산한다.
+
+        // answer = 0은 총 점수를, 앞 점수를 나타내는 cnt = 0를 가진다.
+        // arr를 순회하면서 정답과 오답 여부를 판단한다
+        // 맞을 경우에는, cnt에 1을 더해서 answer에 추가한다
+        // 틀릴 경우에는 cnt를 0으로만 변경한다.
+
+        let answer = 0;
+        let cnt = 0;
+        for (let x of arr) {
+          if (x === 0) {
+            // 오답일 경우,
+            cnt = 0;
+          } else {
+            // 정답일 경우,
+            cnt++;
+            answer += cnt;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

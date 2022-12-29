@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>격자판 최대합 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        // case1
+        // 5 * 5 격자판에서 각 행의 합, 객 열의 합, 두 대각선의 합 중 가장 큰 수를 리턴한다
+
+        // arr를 순회하면서 각 행의 합, 객 열의 합을 먼저 구하고 answer에 담는다
+        // 두 대각선의 합을 구해서 answer에 담는다
+        // answer 중 가장 큰 수를 리턴한다
+
+        // case2
+        // 열과 행의 합을 구하면서 매번 Math.max를 answer에 저장한다
+        // 마지막으로 대각선의 합을 구해서 Math.max한다
+
+        let answer = 0;
+        let n = arr.length;
+        let sum1 = 0; // arr[i][j]의 값을 합한다. 우상향 대각선 합을 더한다
+        let sum2 = 0; // arr[j][i]의 값을 합한다. 우하향 대각선 합을 더한다
+
+        for (let i = 0; i < n; i++) {
+          sum1 = 0;
+          sum2 = 0;
+          for (let j = 0; j < n; j++) {
+            sum1 += arr[i][j]; // 행의 합을 더한다
+            sum2 += arr[j][i]; // 열의 합을 더한다
+          }
+          // 매번 행과 열의 합을 구했을 때마다 제일 큰 수를 찾는다
+          answer = Math.max(answer, sum1, sum2);
+        }
+        sum1 = 0;
+        sum2 = 0;
+        // 대각선의 합을 구한다
+        for (let x = 0; x < n; x++) {
+          sum1 += arr[x][x]; // 우하향 대각선의 합
+          sum2 += arr[x][n - 1 - x]; // 우상향 대각선의 합
+          // arr[0][5 - 1 - 0 = 4] etc
+        }
+
+        // 행과 열의 최댓값을 구한 후, 대각선들과의 최댓값을 구한다
+        answer = Math.max(answer, sum1, sum2);
+
+        return answer;
+      }
+
+      let arr = [
+        [10, 13, 10, 12, 15],
+        [12, 39, 30, 23, 11],
+        [11, 25, 50, 53, 15],
+        [19, 27, 29, 37, 27],
+        [19, 13, 30, 13, 19]
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
