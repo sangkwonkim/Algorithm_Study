@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>봉우리 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        // N * N 격자판에는 그 지역의 높이가 쓰여있음
+        // 상하좌우 숫자보다 큰 숫자는 봉우리 지역으로, 봉우리 지역이 몇 개인지 알아내는 프로그램 작셩
+        // 격자의 가장자리는 0으로 초기화 되었다고 가정한다
+        //
+        // case1
+        // 1. 먼저, 격자의 가장자리를 0으로 초기화한다.
+        // 2. 상하좌우보다 arr[x][y] 요소가 크다면 answer을 ++하는 함수를 만든다.
+        // 3. 이중 for문을 통해서 돌면서 1의 객체에 요소를 대입해 2함수 여부를 확인한다.
+        // arr[x][y]
+        // 상 : arr[x - 1][y]
+        // 하 : arr[x + 1][y]
+        // 좌 : arr[x][y - 1]
+        // 우 : arr[x][y + 1]
+        // let answer = 0;
+        // // 격자 가장자리를 0으로 초기화한다
+        // arr.forEach((el) => {
+        //   el.push(0), el.unshift(0);
+        // });
+        // let initial = Array.from({ length: arr.length + 2 }, () => 0);
+        // arr.push(initial);
+        // arr.unshift(initial);
+        // // 상하좌우 보다 크다면 answer에 ++하는 함수
+        // let isTop = (x, y) => {
+        //   if (
+        //     arr[x][y] > arr[x - 1][y] &&
+        //     arr[x][y] > arr[x + 1][y] &&
+        //     arr[x][y] > arr[x][y - 1] &&
+        //     arr[x][y] > arr[x][y + 1]
+        //   ) {
+        //     return answer++;
+        //   }
+        // };
+        // // 이중반복문으로 모든 요소를 확인한다
+        // for (let n = 1; n < arr.length - 1; n++) {
+        //   for (let x = 1; x < arr[n].length - 1; x++) {
+        //     isTop(n, x);
+        //   }
+        // }
+        // return answer;
+        //
+        // case2
+        // 1. arr의 모든 요소를 탐색하는 이중 for문과
+        // 2. 상하좌우를 확인하는 for문을 한 번 더 돌린다
+        // 3. 상하좌우가 >= 0 && < arr.length 인지 여부를 확인한다
+        // 4. 만약에 2번 for문 중 하나라도 크다면 해당 요소의 2번 for문을 중단시킨다
+        // 5. 전부 돌고 for 문이 끝난다면 가장 높은 봉우리이기 때문에 answer++ 한다
+        let answer = 0;
+        let length = arr.length;
+        let dx = [-1, 1, 0, 0]; // 상하좌우
+        let dy = [0, 0, -1, 1];
+
+        for (let n = 0; n < length; n++) {
+          for (let i = 0; i < length; i++) {
+            let isTop = true;
+            for (let x = 0; x < 4; x++) {
+              let nx = n + dx[x];
+              let ny = i + dy[x];
+              if (
+                nx >= 0 &&
+                nx < length &&
+                ny >= 0 &&
+                ny < length &&
+                arr[nx][ny] >= arr[n][i]
+              ) {
+                isTop = false;
+                break;
+              }
+            }
+            if (isTop) answer++;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2]
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
