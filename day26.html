@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>유효한 팰린드롬 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 앞에서 읽을 때나 뒤에서 읽을 때나 같은 문자열을 팰린드롬이라고 함
+        // 문자열이 입력되면 해당 문자열이 팰린드롬이면 yes, 아니면 no를 반환
+        // 단 회문을 검사할 때 알파벳만 가지고 회문을 검사하며, 대소문자를 구문하지 않고
+        // 알파벳 이외의 문자들은 무시
+
+        // s를 소문자로 변경 후 replace를 사용해서 문자 이외의 요소를 ''으로 변경한다
+        // 이후 split.reverse.join으로 반전 후 s와 비교한다
+
+        // 정규표현식에서 []안의 ^은 !를 의미함
+        // [] 앞의 ^는 시작을 의미함
+
+        let answer = 'YES';
+        s = s.toLowerCase().replace(/[^a-z]/g, '');
+        if (s.split('').reverse().join('') !== s) return 'NO';
+
+        return answer;
+      }
+
+      let str = 'found7, time: study; Yduts; emiu, 7Dnuof';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

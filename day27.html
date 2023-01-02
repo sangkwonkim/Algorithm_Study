@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>숫자만 추출 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        // 문자와 숫자가 섞여있는 문자열이 주어지면 그 중 숫자만 추출하여 그 순서대로 자연수를 만든다
+
+        // replace를 사용해서 숫자만을 남기고, number로 변환해서 리턴한다
+        let answer = Number(str.replace(/[^0-9]/g, ''));
+        return answer;
+
+        // case2
+        // str의 각 요소를 돌면서 isNaN을 통해서 숫자 여부를 판단하고
+        // answer += 해서 parseInt 해도 됨
+        // let answer = '';
+        // for (let x of str) {
+        //   if (!isNaN(x)) answer += x;
+        // }
+        // return parseInt(answer);
+      }
+
+      let str = 'g0en2T0s8eSoft';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
