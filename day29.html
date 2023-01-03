@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>문자열 압축 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 알파벳 대문자로 이루어진 문자열을 입력받아 같은 문자가 연속으로 반복되는 경우 반복되는 문자 바로 오른쪽에 반복 횟수를 표기해 반환
+        // 반복횟수가 1인 경우 생략
+
+        // 1. 최초의 비교 문자와 리턴할 결과는 0번째 인덱스 문자로 한다
+        // 2. num = 1로 해서 비교 문자와 다를 경우 ++ 한다
+        // 3. for 문을 1번 인덱스부터 돌면서 비교 문자 다를 경우 비교 문자를 변경하고 숫자를 추가해준다
+        // 4. answer에는 새롭게 나오는 문자로 변경한다
+        // 5. 마지막 비교 문자의 숫자를 더해준다
+        let answer = s[0];
+        let alpha = s[0];
+        let num = 1;
+        for (let n = 1; n < s.length; n++) {
+          if (s[n] === alpha) {
+            num++;
+          } else {
+            alpha = s[n];
+            if (num > 1) answer += num;
+            answer += alpha;
+            num = 1;
+          }
+        }
+        if (num !== 1) answer += num;
+        return answer;
+
+        // case2
+        // for 문을 돌면서 i와 i+1 번째 요소를 비교한다
+        // 같다면 num++
+        // 다르다면 answer에 더해준다
+        // 단 맨 마지막 요소를 비교하기 위해 s의 마지막에 공란을 추가해준다
+        // let answer = '';
+        // let num = 1;
+        // s = s + ' ';
+        // for (let i = 0; i < s.length - 1; i++) {
+        //   if (s[i] === s[i + 1]) num++;
+        //   else {
+        //     answer += s[i];
+        //     if (num > 1) answer += num;
+        //     num = 1;
+        //   }
+        // }
+        // return answer;
+      }
+
+      let str = 'KKHSSSSSSSEE';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
