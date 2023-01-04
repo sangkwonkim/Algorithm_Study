@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>자릿 수의 합 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        // N개의 자연수가 입력되면 각 자연수의 자릿수의 합을 구하고, 그 합이 최대인 자연수를 출력
+        // 자릿수의 합이 같은 경우 원래 숫자가 큰 숫자를 답으로 함
+
+        // 1. arr를 순회한다
+        // 2. 각 요소를 10으로 나누고 나머지를 sum에 더한다
+        // 3. 몫이 0이 될 때까지 계속 나누고 나머지를 sum에 더한다
+
+        let answer = 0;
+        let max = 0;
+        for (let x of arr) {
+          let sum = 0,
+            tmp = x;
+
+          while (tmp > 0) {
+            sum += tmp % 10; // 10으로 나누었을 때 나머지를 sum에 더한다
+            tmp = parseInt(tmp / 10);
+          }
+          if (sum >= max && x > answer) {
+            answer = x;
+            max = sum;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(7, arr));
+    </script>
+  </body>
+</html>
