@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>뒤집은 소수 출력결과</title>
+  </head>
+  <body>
+    <script>
+      // N개의 자연수가 입력되면 각 자연수를 뒤집은 후 그 뒤집은 수가 소수이면 출력
+      function isPrime(num) {
+        // 소수인지 여부를 판단한다
+        // 1은 소수가 아니다
+        if (num === 1) return false;
+        for (let n = 2; n < num; n++) {
+          // 2부터 num 직전까지 나머지를 구했을 때 0이 한 번이라도 되면 소수가 아니다
+          if (num % n === 0) return false;
+        }
+        // case2 제곱근을 구해서 해당 수까지 계산을 해도 된다
+        // for (let n = 2; n <= Math.sqrt(num); n++) {
+        //   if (num % n === 0) return false;
+        // }
+        // case3 parseInt(num/2) || num/2
+        return true;
+      }
+      function solution(arr) {
+        // arr를 순회하면서
+        // 해당 요소를 문자로 바꾸고, Number(split('').reverse().join(''))한 값이 isPrime 함수에 true로 반환되면
+        // answer에 추가한다
+        let answer = [];
+        for (let x of arr) {
+          let num = Number(x.toString().split('').reverse().join(''));
+          if (isPrime(num)) answer.push(num);
+        }
+
+        // case2 string화 하지 않고 숫자 뒤집는 방법
+        // for (let x of arr) {
+        //   let res = 0;
+        //   while (x) {
+        //     let t = x % 10; // 10으로 나눈 나머지를 구한다
+        //     res = res * 10 + t; // res의 기존에 있는 수는 10을 곱해주고, t를 더해준다
+        //     x = parseInt(x / 10); // 몫만 가져간다
+        // 372로 예를 든다면..
+        // 10으로 나눈 나머지는 2 => res = res * 10 + 2인데 최초의 res는 0이기 때문에 res = 2
+        // 몫은 37 x = 37
+        //
+        // 37을 10으로 나눈 나머지는 7 => res = 2 * 10 + 7 => res = 27
+        // 몫은 3 x = 3
+        //
+        // 3을 10으로 나눈 나머지는 3 => res = 27 * 10 + 3 => res = 273
+        // 몫은 0으로 while이 종료된다
+        //   }
+        //   if (isPrime(res)) answer.push(res);
+        // }
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
