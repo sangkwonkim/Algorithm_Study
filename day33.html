@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>졸업선물 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, product) {
+        // product의 각 요소의 첫 번째 요소는 상품의 가격, 두 번째 요소는 배송비
+        // 상품 하나를 50% 할인해서 구매할 수 있음
+        // m은 예산으로, 선물할 수 있는 최대 학생수를 리턴한다
+
+        // 먼저 product와 list로 상품 가격과 배송비를 합해서 정렬한다
+        // 첫번째 요소부터 할인받고 나머지 요소들을 더 했을 때 m과 차이가 안나고, 갯수가 제일 많은 지 여부를 확인한다
+        let answer = 0;
+
+        // 각 요소를 합하고, 정렬한다
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+        let list = product.map((el) => {
+          return el[0] + el[1];
+        });
+
+        for (let n = 0; n < list.length; n++) {
+          let total = m;
+          // 해당 요소의 할인된 금액을 구한다
+          let discountPrice = product[n][0] / 2 + product[n][1];
+          total -= discountPrice;
+          let count = 1;
+          // 나머지 요소를 돌면서 동일한 위치가 아니고, 차감한 금액이 0보다 크거나 같다면 total을 차감하고 count++ 한다
+          for (let i = 0; i < list.length; i++) {
+            if (n !== i && total - list[i] >= 0) {
+              total -= list[i];
+              count++;
+            } else break;
+          }
+          // answer보다 크다면 answer = count 해준다
+          if (count > answer) answer = count;
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3]
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
