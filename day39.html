@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>최대 매출 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(k, arr) {
+        // arr는 영업일 별 매출을 담은 배열
+        // 연속된 K일 동안 최대 매출액을 리턴
+
+        // sliding window
+        // k 만큼의 창문이 arr를 순회함
+        // [1, 2, 3, 4, 5] 라는 arr를 받고, k가 3일 경우
+        // [0 ,0, 0]
+        // 이 창문이 한 칸 이동하면 1은 빠지고 3은 더해짐
+        // 이렇게 구현하는 것이 sliding window
+        // 먼저 for문으로 k만큼 요소를 더하고
+        // k번부터 다시 for문을 통해 다음 요소는 더하고 창문의 첫번째 요소를 빼면 됨
+        let max = 0;
+        let point = 0;
+
+        // 먼저 k까지 요소의 더한 값을 구한다
+        for (let x = 0; x < k; x++) {
+          point += arr[x];
+        }
+        max = point;
+        // k부터 배열의 끝까지 순회하면서 다음 요소는 더하고 첫번째 요소는 뺀 값을 구해서
+        // 그 수가 가장 큰 수인지 여부를 파악하고 max를 변경해준다
+        for (let n = k; n < arr.length; n++) {
+          point = point + arr[n] - arr[n - k];
+          max = Math.max(max, point);
+        }
+
+        return max;
+      }
+
+      let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(solution(3, a));
+    </script>
+  </body>
+</html>
