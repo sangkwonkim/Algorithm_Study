@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>아나그램 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        // 아나그램이란, 두 문자열이 알파벳의 나열 순서는 다르지만 그 구성이 일치하는 것
+        // 아나그램 판별 시 대소문자 구별
+        // let data1 = new Map();
+        // let data2 = new Map();
+        // let answer = 'YES';
+
+        // for (let x of str1) {
+        //   if (data1.has(x)) data1.set(x, data1.get(x) + 1);
+        //   else data1.set(x, 1);
+        // }
+
+        // for (let x of str2) {
+        //   if (data2.has(x)) data2.set(x, data2.get(x) + 1);
+        //   else data2.set(x, 1);
+        // }
+
+        // for (let [key, value] of data1) {
+        //   if (data2.get(key) !== value) return 'NO';
+        // }
+        // return answer;
+
+        // case 2
+        // 하나만 map()을 만들어 놓고
+        // 나머지 str2를 돌면서 해당 키가 map에 존재하면 감소시킨다
+        let data = new Map();
+        let answer = 'YES';
+        for (let x of str1) {
+          if (data.get(x)) data.set(x, data.get(x) + 1);
+          else data.set(x, 1);
+        }
+
+        for (let x of str2) {
+          if (data.has(x) && data.get(x) > 0) {
+            data.set(x, data.get(x) - 1);
+          } else return 'NO';
+        }
+        return answer;
+      }
+
+      let a = 'AbaAeCe';
+      let b = 'baeeACA';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
