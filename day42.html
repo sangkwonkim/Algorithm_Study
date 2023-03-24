@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>모든 아나그램 찾기 출력결과</title>
+  </head>
+  <body>
+    <script>
+      const checkMap = (target, arg) => {
+        // map2의 문자 구성과 map1의 일부(슬라이딩 윈도우)의 문자 구성이 동일한지 여부 판단
+        let test = new Map(target);
+        for (let [key, value] of arg) {
+          if (test.has(key) && test.get(key) > 0) {
+            test.set(key, test.get(key) - 1);
+          } else {
+            return false;
+          }
+        }
+        // console.log(target, arg);
+        return true;
+      };
+
+      function compareMaps(map1, map2) {
+        // s문자열에서 t문자열과 아나그램이 되는 s의 부분 문자열의 개수를 구하기
+        // 대문자 구분
+        // 부분 문자열은 연속된 문자열
+        // map1에 map2와 아나그램이 되는 부분문자열의 개수를 출력
+
+        // 먼저 해쉬로 map2의 문자 구성을 확인
+        // map2의 길이만큼 map1을 슬라이딩 윈도우로 돌면서 해쉬화 해서 map2의 문자 구성과 동일한지 여부를 확인한다
+        let answer = 0;
+        let data = new Map();
+
+        // map2의 문자 구성 확인
+        for (let x of map2) {
+          if (data.has(x)) data.set(x, data.get(x) + 1);
+          data.set(x, 1);
+        }
+        // map2의 길이만큼 map1의 요소들의 Map을 만들어줌
+        let data2 = new Map();
+        for (let n = 0; n < map2.length; n++) {
+          if (data2.has(map1[n])) data2.set(map1[n], data2.get(map1[n]) + 1);
+          data2.set(map1[n], 1);
+        }
+        let leng = map1.length;
+        let leng2 = map2.length;
+
+        for (let n = leng2; n < leng; n++) {
+          if (checkMap(data, data2)) answer++;
+
+          // 슬라이딩 윈도우로 map2를 순회한다
+          // 윈도우의 첫번째 요소를 data2에서 차감한다
+          if (data2.get(map1[n - leng2]) !== 1) {
+            data2.set(map1[n - leng2], data2.get(map1[n - leng2]) - 1);
+          } else data2.delete(map1[n - leng2]);
+
+          if (data2.has(map1[n])) data2.set(map1[n], data2.get(map1[n]) + 1);
+          else data2.set(map1[n], 1);
+        }
+
+        return answer;
+      }
+
+      let a = 'bacaAacba';
+      let b = 'abc';
+      console.log(compareMaps(a, b));
+    </script>
+  </body>
+</html>
