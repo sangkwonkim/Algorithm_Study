@@ -7,6 +7,10 @@
     <script>
       function solution(s) {
         // 괄호가 입력되면 올바른 괄호면 'YES', 아니면 'NO' 리턴
+        // 열리는 괄호를 스택에 쌓고,
+        // 닫는 괄호가 나오면 스택에서 뺀다
+        // 스택이 비어 있는 데 닫는 괄호가 나온다던지
+        // for문 이후에 스택이 비어있지 않다면 NO을 리턴
         let target = new Array();
         for (let x of s) {
           if (x === '(') target.push(x);

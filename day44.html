@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>괄호문자제거 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 소괄호 사이에 존재하는 모든 문자를 제거하고 남은 문자만 출력
+        let arr = [];
+        for (let x of s) {
+          if (x === ')') {
+            while (arr.pop() !== '(');
+          } else arr.push(x);
+        }
+        return arr.join('');
+      }
+
+      let str = '(A(BC)D)EF(G(H)(IJ)K)LM(N)';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
