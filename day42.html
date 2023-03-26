@@ -7,13 +7,21 @@
     <script>
       const checkMap = (target, arg) => {
         // map2의 문자 구성과 map1의 일부(슬라이딩 윈도우)의 문자 구성이 동일한지 여부 판단
-        let test = new Map(target);
+        // let test = new Map(target);
+        // for (let [key, value] of arg) {
+        //   if (test.has(key) && test.get(key) > 0) {
+        //     test.set(key, test.get(key) - 1);
+        //   } else {
+        //     return false;
+        //   }
+        // }
+        // // console.log(target, arg);
+        // return true;
+        // console.log(target, arg);
+
+        if (target.size !== arg.size) return false;
         for (let [key, value] of arg) {
-          if (test.has(key) && test.get(key) > 0) {
-            test.set(key, test.get(key) - 1);
-          } else {
-            return false;
-          }
+          if (!target.has(key) || target.get(key) !== value) return false;
         }
         // console.log(target, arg);
         return true;
@@ -33,19 +41,22 @@
         // map2의 문자 구성 확인
         for (let x of map2) {
           if (data.has(x)) data.set(x, data.get(x) + 1);
-          data.set(x, 1);
+          else data.set(x, 1);
         }
         // map2의 길이만큼 map1의 요소들의 Map을 만들어줌
         let data2 = new Map();
         for (let n = 0; n < map2.length; n++) {
           if (data2.has(map1[n])) data2.set(map1[n], data2.get(map1[n]) + 1);
-          data2.set(map1[n], 1);
+          else data2.set(map1[n], 1);
         }
         let leng = map1.length;
         let leng2 = map2.length;
 
-        for (let n = leng2; n < leng; n++) {
-          if (checkMap(data, data2)) answer++;
+        for (let n = leng2; n <= leng; n++) {
+          if (checkMap(data, data2)) {
+            console.log('이거는 for문에서 :', data, data2);
+            answer++;
+          }
 
           // 슬라이딩 윈도우로 map2를 순회한다
           // 윈도우의 첫번째 요소를 data2에서 차감한다
@@ -58,6 +69,11 @@
         }
 
         return answer;
+
+        // 강의 후  수정 사항
+        // 1. data와 data2의 size가 다르면 무조건 false 리턴
+        // 2. 마지막 for문을 투 포인터로 진행하면, 코드에서 n - leng 등을 정리할 수 있을 것 같음
+        // 3. checkMap에서 차감하면서 비교하는 것이 아니라 key와 value가 있는 지 여부만 확인하면 된다
       }
 
       let a = 'bacaAacba';

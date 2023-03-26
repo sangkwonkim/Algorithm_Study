@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>올바른 괄호 출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        // 괄호가 입력되면 올바른 괄호면 'YES', 아니면 'NO' 리턴
+        let target = new Array();
+        for (let x of s) {
+          if (x === '(') target.push(x);
+          else {
+            if (target.length === 0) return 'NO';
+            target.pop();
+          }
+        }
+        if (target.length !== 0) return 'NO';
+        return 'YES';
+      }
+
+      let a = '(()))(';
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
